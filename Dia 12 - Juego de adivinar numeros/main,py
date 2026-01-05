@@ -1,0 +1,63 @@
+#Import art and random lib
+import art
+import random as rd
+
+#Global variable
+attempts = 0 #It will change deppending on the difficult
+answer = 0
+game_over = False
+
+#Functions with return
+def choose_difficulty(difficulty_level):
+    """
+    Chosses difficulty for the game
+    """
+    global attempts
+    if difficulty_level == "facil":
+        attempts = 10
+    elif difficulty_level == "dificil":
+        attempts = 5
+    else:
+        print("Wrong choice")
+
+def check_guess(player_guess, player_turns):
+    """
+    Checks if the player guessed correctly
+    """
+    global attempts
+    global game_over
+    if player_guess == answer:
+        game_over = True
+        print(art.win)
+        print("Correcto! Ganaste el juego!")
+    elif player_guess > answer:
+        print("Tu respuesta esta muy por encima")
+        return player_turns -1
+    else:
+        print("Tu respuesta esta muy por debajo")
+        return player_turns -1
+
+
+#"Main"
+def main():
+    """
+    runs the game
+    """
+    global attempts
+    global answer
+    print(art.logo)
+    print("Bienvenido al juego de adivinar numeros")
+    print("Estoy pensando en un numero entre el 1 y el 100")
+    answer = rd.randint(1,100)
+    difficulty = input("Elige una dificultad. Escribe 'facil' o 'dificil': ").lower()
+    choose_difficulty(difficulty)
+    while not game_over:
+        print(f"Tienes {attempts} intentos restantes")
+        guess = int(input("Cual numero piensas que es?: "))
+        attempts = check_guess(guess,attempts)
+        if attempts == 0:
+            print(art.lose)
+            print("Perdiste, te quedaste sin intentos!")
+            return
+
+main()

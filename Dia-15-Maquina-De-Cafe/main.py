@@ -33,6 +33,21 @@ resources = {
     "money": float(0),
 }
 
+#Arte
+coffee_art = r"""
+    (  )   (   )  )
+     ) (   )  (  (
+     ( )  (    ) )
+     _____________
+    <_____________> ___
+    |             |/ _ \
+    |               | | |
+    |               |_| |
+ ___|             |\___/
+/    \___________/    \
+\_____________________/
+"""
+
 #from resources_data import resources, MENU
 
 option = ""
@@ -56,6 +71,7 @@ def make_coffe(u_option):
     #Agregar ganancia al monto de la maquina
     resources["money"] += MENU[u_option]["cost"]
     print(f"Making {u_option}\n Here it is! Enjoy your {u_option}")
+    print(coffee_art)
 
 def insert_coins():
     quarters = int(input("How many quarters 0.25$ do you want to enter: "))
